@@ -7,6 +7,10 @@ using VRC.SDKBase;
 using VRC.Udon;
 #endif
 
+#if PVR_CCK_WORLDS
+using PVR.PSharp;
+#endif
+
 #if COMPILER_UDONSHARP
 using GlobalShader = VRC.SDKBase.VRCShader;
 #else
@@ -16,6 +20,8 @@ using GlobalShader = UnityEngine.Shader;
 #if UDONSHARP
 [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
 public class LTCGI_UdonAdapter : UdonSharpBehaviour
+#elif PVR_CCK_WORLDS
+public class LTCGI_RuntimeAdapter : PSharpBehaviour
 #else
 // FIXME: This makes the filename mismatch the class name
 // - I think Unity doesn't like that?
